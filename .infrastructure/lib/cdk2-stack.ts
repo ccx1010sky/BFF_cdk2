@@ -4,7 +4,7 @@ import {
   Cognito, BuildsBucket, QueueFunction, WebRoutes, ZipFunction, githubActions,
 } from '@scloud/cdk-patterns';
 import { AttributeType, BillingMode, Table } from 'aws-cdk-lib/aws-dynamodb';
-import { Function, Code g} from 'aws-cdk-lib/aws-lambda';
+import { Function, Code } from 'aws-cdk-lib/aws-lambda';
 import { HostedZone, IHostedZone } from 'aws-cdk-lib/aws-route53';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { Queue } from 'aws-cdk-lib/aws-sqs';
