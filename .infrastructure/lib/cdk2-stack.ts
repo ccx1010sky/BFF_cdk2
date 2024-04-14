@@ -153,6 +153,7 @@ export default class Cdk2Stack extends cdk.Stack {
         BUCKET: aBucket.bucketName,
         TABLE: aTable.tableName,
       },
+      handler: 'src/lambda.handler', // file is "lambda", function is "handler" //cc
       functionProps: {
         memorySize: 3008,
         code: Code.fromBucket(builds, 'api.zip'), // This can be uncommented once you've run a build of the API code

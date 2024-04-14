@@ -26,7 +26,6 @@
     "eslint-plugin-import": "*",
     "jest": "*",
     "ts-jest": "*",
-    "ts-node": "*",
     "typescript": "*"
   },
   "dependencies": {
@@ -34,6 +33,7 @@
     "@scloud/cdk-patterns": "*",
     "aws-cdk-lib": "*",
     "constructs": "*",
-    "source-map-support": "*"
+    "source-map-support": "*",
+    "ts-node": "^10.9.2"
   }
 }
