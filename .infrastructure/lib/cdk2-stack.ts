@@ -8,7 +8,7 @@ import { Function } from 'aws-cdk-lib/aws-lambda';
 import { HostedZone, IHostedZone } from 'aws-cdk-lib/aws-route53';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { Queue } from 'aws-cdk-lib/aws-sqs';
-import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
+// import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';//cc comment out
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 function envVar(name: string, fallback?: string): string {
@@ -33,7 +33,7 @@ export default class Cdk2Stack extends cdk.Stack {
     // A bucket to hold zip files for Lambda functions
     // This is useful because updating a Lambda function in the infrastructure might set the Lambda code to a default placeholder.
     // Having a bucket to store the code in means we can update the Lambda function to use the code, either here in the infrastructure build, or from the Github Actions build.
-    const builds = new BuildsBucket(this)
+    const builds = new BuildsBucket(this);
 
     // An optional queue for sending notifications to Slack
     const slackQueue = this.slack();
@@ -49,10 +49,12 @@ export default class Cdk2Stack extends cdk.Stack {
     // Example DynamoDB table
     const aTable = new Table(this, 'table', {
       billingMode: BillingMode.PAY_PER_REQUEST,
+      tableName: 'cc1Table', // Set the table name to 'ccTable'//cc added
       partitionKey: {
         name: 'id',
         type: AttributeType.STRING,
       },
+      sortKey: { name: 'date', type: AttributeType.STRING }, // cc added
       removalPolicy: cdk.RemovalPolicy.DESTROY, // TEMP so you can clean up the stack without resources being left behind
     });
 

@@ -3,6 +3,10 @@
 *.d.ts
 node_modules
 
+
+# create below file to quickly export aws key and ignore this file
+credentials.sh
+
 # CDK asset staging directory
 .cdk.staging
 cdk.out
