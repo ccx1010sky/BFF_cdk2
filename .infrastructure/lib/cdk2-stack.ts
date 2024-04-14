@@ -17,14 +17,14 @@ function envVar(name: string, fallback?: string): string {
   return value;
 }
 
-export default class TemplateStack extends cdk.Stack {
+export default class Cdk2Stack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     // The code that defines your stack goes here
 
     // This only needs to be created once per account. If you already have one, you can delete this.
-    githubActions(this).ghaOidcProvider();
+    // githubActions(this).ghaOidcProvider();
 
     // You'll need a zone to create DNS records in. This will need to be referenced by a real domain name so that SSL certificate creation can be authorised.
     // NB the DOMAIN_NAME environment variable is defined in .infrastructure/secrets/domain.sh
@@ -75,14 +75,14 @@ export default class TemplateStack extends cdk.Stack {
       domainName: envVar('DOMAIN_NAME'),
       defaultIndex: true,
       redirectWww: true,
-      functionAssociation: {
-        // Enables mappling paths like /privacy to /privacy.html so they can be served from s3
-        function: new cloudfront.Function(this, 'cfFunction', {
-          code: cloudfront.FunctionCode.fromFile({ filePath: './lib/cfFunction.js' }),
-          comment: 'Rewrite URLs to .html and redirect /register, /iphone and /android',
-        }),
-        eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
-      },
+      // functionAssociation: {
+      //   // Enables mappling paths like /privacy to /privacy.html so they can be served from s3
+      //   function: new cloudfront.Function(this, 'cfFunction', {
+      //     code: cloudfront.FunctionCode.fromFile({ filePath: './lib/cfFunction.js' }),
+      //     comment: 'Rewrite URLs to .html and redirect /register, /iphone and /android',
+      //   }),
+      //   eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
+      // },
     });
 
     // Set up OIDC access from Github Actions - this enables builds to deploy updates to the infrastructure
