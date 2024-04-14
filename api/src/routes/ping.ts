@@ -11,7 +11,7 @@ import { DynamoDBDocumentClient, GetCommand} from '@aws-sdk/lib-dynamodb';//cc
 //   };
 // }
 
-//api.yml test6
+//api.yml test8
 
 // Initialize DynamoDB Document Client
 const ddbDocClient = DynamoDBDocumentClient.from(new DynamoDBClient({}));
