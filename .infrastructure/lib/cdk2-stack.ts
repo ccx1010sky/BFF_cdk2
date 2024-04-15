@@ -167,7 +167,7 @@ export default class Cdk2Stack extends cdk.Stack {
         TABLE: aTable.tableName,
       },
       // handler: 'src/lambda.handler', // file is "lambda", function is "handler" //cc
-      // handler: 'dist/lambda.handler', // Update the handler to point to the compiled JavaScript file//cc
+      // handler: 'dist/src/lambda.handler', // Update the handler to point to the compiled JavaScript file//cc
       functionProps: {
         memorySize: 3008,
         // code: Code.fromBucket(builds, 'api.zip'), // This can be uncommented once you've run a build of the API code

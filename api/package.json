@@ -10,6 +10,7 @@
     "test:integration": "mocha --import=tsx --timeout 10000 -r tsconfig-paths/register 'test/integration/**/*.spec.ts'",
     "compile": "tsc",
     "package": "mkdir -p dist && cp -r js/src dist && cp package*.json dist && cd dist && yarn --prod && zip -r function.zip ."
+    
   },
   "author": "David Carboni",
   "license": "ISC",
