@@ -171,7 +171,7 @@ export default class Cdk2Stack extends cdk.Stack {
       functionProps: {
         memorySize: 3008,
         // code: Code.fromBucket(builds, 'api.zip'), // This can be uncommented once you've run a build of the API code
-        // layers: [lambda.LayerVersion.fromLayerVersionArn(this, 'MyLayer', layerArn)],//cc
+
       },
     });
 

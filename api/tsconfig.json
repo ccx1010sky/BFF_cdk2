@@ -24,6 +24,5 @@
       "./node_modules/@types"
     ],
     "outDir": "js", 
-    // "outDir": "dist",//cc change js to dist folder, tsc all .ts file to .js file and store in this dist folder.
   },
 }
