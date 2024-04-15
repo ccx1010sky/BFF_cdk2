@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { Request, Response } from '@scloud/lambda-api/dist/types';
-import { DynamoDBClient } from '@aws-sdk/client-dynamodb'; //cc
-import { DynamoDBDocumentClient, GetCommand} from '@aws-sdk/lib-dynamodb';//cc
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb'; // cc
+import { DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb';// cc
 
 // export async function ping(request: Request): Promise<Response> {
 //   console.log('ping', request.query);
@@ -11,7 +11,7 @@ import { DynamoDBDocumentClient, GetCommand} from '@aws-sdk/lib-dynamodb';//cc
 //   };
 // }
 
-//api.yml test9
+// api.yml test9
 
 // Initialize DynamoDB Document Client
 const ddbDocClient = DynamoDBDocumentClient.from(new DynamoDBClient({}));
@@ -19,11 +19,9 @@ const ddbDocClient = DynamoDBDocumentClient.from(new DynamoDBClient({}));
 export async function ping(request: Request): Promise<Response> {
   console.log('ping', request.query);
 
-
-
   // Retrieve item from DynamoDB
   try {
-    const { itemId } = request.query; // Assuming itemId is present in the request query
+    // const { itemId } = request.query; // Assuming itemId is present in the request query
 
     // Specify the parameters for the GetCommand
     const params = {
@@ -43,12 +41,11 @@ export async function ping(request: Request): Promise<Response> {
         statusCode: 200,
         body: { message: 'Item retrieved successfully', item: Item },
       };
-    } else {
-      return {
-        statusCode: 404,
-        body: { message: 'Item not found' },
-      };
     }
+    return {
+      statusCode: 404,
+      body: { message: 'Item not found' },
+    };
   } catch (error) {
     console.error('Error retrieving item:', error);
     return {

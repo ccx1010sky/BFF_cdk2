@@ -71,12 +71,22 @@ export default class Cdk2Stack extends cdk.Stack {
     // * API_LAMBDA - the name of the Lambda function to update when deploying the API
     // * CLOUDFRONT_BUCKET - for uploading the frontend
     // * CLOUDFRONT_DISTRIBUTIONID - for invalidating the Cloudfront cache
+
+    // invoke api function and assign to variable api //cc
     const api = this.api(cognito, builds, aBucket, aTable, slackQueue);
+
+    // cc**
+    // .routes code structure
+    //   static routes(scope: Construct, id: string, routes: {
+    //     [pathPattern: string]: Function;
+    // }, webRoutesProps: WebRoutesProps, lambdaRestApiProps?: Partial<LambdaRestApiProps>): WebRoutes;
+    // cc**
+
     WebRoutes.routes(this, 'cloudfront', { '/api/*': api }, {
-      zone,
-      domainName: envVar('DOMAIN_NAME'),
-      defaultIndex: true,
-      redirectWww: true,
+      zone, // WebRoutesProps
+      domainName: envVar('DOMAIN_NAME'), // WebRoutesProps
+      defaultIndex: true, // WebRoutesProps
+      redirectWww: true, // WebRoutesProps
       // functionAssociation: {
       //   // Enables mappling paths like /privacy to /privacy.html so they can be served from s3
       //   function: new cloudfront.Function(this, 'cfFunction', {
@@ -138,6 +148,9 @@ export default class Cdk2Stack extends cdk.Stack {
     // return Cognito.withEmailLogin(this, 'cognito', callbackUrl, undefined, zone);
   }
 
+
+  // Assuming you have the layer ARN stored in a variable called layerArn //c
+// const layerArn = 'arn:aws:lambda:region:account-id:layer:layer-name:version'; //cc
   api(
     cognito: Cognito,
     builds: Bucket,
@@ -153,10 +166,12 @@ export default class Cdk2Stack extends cdk.Stack {
         BUCKET: aBucket.bucketName,
         TABLE: aTable.tableName,
       },
-      handler: 'src/lambda.handler', // file is "lambda", function is "handler" //cc
+      // handler: 'src/lambda.handler', // file is "lambda", function is "handler" //cc
+      // handler: 'dist/lambda.handler', // Update the handler to point to the compiled JavaScript file//cc
       functionProps: {
         memorySize: 3008,
-        code: Code.fromBucket(builds, 'api.zip'), // This can be uncommented once you've run a build of the API code
+        // code: Code.fromBucket(builds, 'api.zip'), // This can be uncommented once you've run a build of the API code
+        // layers: [lambda.LayerVersion.fromLayerVersionArn(this, 'MyLayer', layerArn)],//cc
       },
     });
 
