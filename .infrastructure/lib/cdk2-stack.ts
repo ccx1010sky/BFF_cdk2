@@ -4,7 +4,7 @@ import {
   Cognito, BuildsBucket, QueueFunction, WebRoutes, ZipFunction, githubActions,
 } from '@scloud/cdk-patterns';
 import { AttributeType, BillingMode, Table } from 'aws-cdk-lib/aws-dynamodb';
-import { Function,Code } from 'aws-cdk-lib/aws-lambda';
+import { Function, Code } from 'aws-cdk-lib/aws-lambda';
 import { HostedZone, IHostedZone } from 'aws-cdk-lib/aws-route53';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { Queue } from 'aws-cdk-lib/aws-sqs';
@@ -30,8 +30,8 @@ export default class Cdk2Stack extends cdk.Stack {
     // NB the DOMAIN_NAME environment variable is defined in .infrastructure/secrets/domain.sh
     const zone = this.zone(envVar('DOMAIN_NAME'), process.env.ZONE_ID);
 
-    // A bucket to hold zip files for Lambda functions 
-    //cc Output buildsBucket buildsBucket: {"Value":{"Ref":"builds04899A85"}}
+    // A bucket to hold zip files for Lambda functions
+    // cc Output buildsBucket buildsBucket: {"Value":{"Ref":"builds04899A85"}}
 
     // This is useful because updating a Lambda function in the infrastructure might set the Lambda code to a default placeholder.
     // Having a bucket to store the code in means we can update the Lambda function to use the code, either here in the infrastructure build, or from the Github Actions build.
@@ -71,7 +71,7 @@ export default class Cdk2Stack extends cdk.Stack {
     // Create the frontend and API using Cloudfront
     // The following calls will create variables in Github Actions that can be used to deploy the frontend and API:
     // * API_LAMBDA - the name of the Lambda function to update when deploying the API
-    //cc added: Output apiLambda apiLambda: {"Value":{"Ref":"apiC8550315"}}
+    // cc added: Output apiLambda apiLambda: {"Value":{"Ref":"apiC8550315"}}
     // * CLOUDFRONT_BUCKET - for uploading the frontend
     // * CLOUDFRONT_DISTRIBUTIONID - for invalidating the Cloudfront cache
 
