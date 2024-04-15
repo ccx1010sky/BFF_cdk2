@@ -5,7 +5,7 @@
   "main": "src/lambda.ts",
   "scripts": {
     "local": "nodemon src/lambda.ts --local",
-    "lint": "eslint --fix --ext ts src test",
+    "lint": "eslint --fix src test",
     "test": "mocha --import=tsx -r tsconfig-paths/register 'test/unit/**/*.spec.ts' # tsconfig-paths/register helps resolve imports in tests",
     "test:integration": "mocha --import=tsx --timeout 10000 -r tsconfig-paths/register 'test/integration/**/*.spec.ts'",
     "compile": "tsc",
@@ -14,6 +14,7 @@
   "author": "David Carboni",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
     "@types/chai": "*",
     "@types/mocha": "*",
     "@types/node": "*",
@@ -21,17 +22,19 @@
     "@typescript-eslint/eslint-plugin": "*",
     "@typescript-eslint/parser": "*",
     "chai": "*",
-    "eslint": "*",
+    "eslint": "^9.0.0",
     "eslint-config-airbnb-base": "*",
     "eslint-import-resolver-typescript": "*",
-    "eslint-plugin-import": "*",
+    "eslint-plugin-import": "^2.29.1",
+    "globals": "^15.0.0",
     "mocha": "*",
     "nodemon": "*",
     "tmp": "*",
     "ts-node": "*",
     "tsconfig-paths": "*",
     "tsx": "*",
-    "typescript": "*"
+    "typescript": "*",
+    "typescript-eslint": "^7.7.0"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "*",
