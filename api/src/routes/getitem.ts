@@ -13,9 +13,9 @@ export async function getitem(request: Request): Promise<Response> {
     //Define parameters for the GetItemCommand
     const params = {
       TableName: 'cc1Table', // Name of your DynamoDB table
-      Key: {itemId: {S:'1'}, // Specify the partition key
-        date: {S:'01/01'}, // Specify the sort key
-      },
+      Key: {Id: {S:'1'}, // Specify the partition key
+        date: {S:'01/01'} // Specify the sort key
+      }
     };
 
 
@@ -24,6 +24,7 @@ export async function getitem(request: Request): Promise<Response> {
     try {
     // Send the GetCommand to DynamoDB and await the result
     const { Item } = await ddbClient.send(command);
+
     // Return response based on whether the item was found or not
     if (Item) {
       return {
